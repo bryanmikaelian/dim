@@ -11,17 +11,18 @@
 
   $.fn.dim = function(opts) {
     var $button = $(opts.button);
+    var form = $(this).selector;
+    var $inputs = $($(this).selector + " input");
 
-    $('input').each(function() {
+    $button.addClass('dim');
+    $button.attr('disabled', 'disabled');
+    console.log($inputs);
+
+    $inputs.each(function() {
       $(this).attr("data-valid", "false");
     });
 
-    if ($('input').val() === "" && $('input').val().length < 1) {
-      $button.addClass('dim');
-      $button.attr('disabled', 'disabled');
-    }
-
-    $('input').on('keyup', function() {
+    $inputs.on('keyup', function() {
       if ($(this).val().length > 0) {
         $(this).attr("data-valid", "true");
       } else {
@@ -30,7 +31,7 @@
         $button.attr('disabled', 'disabled');
       }
 
-      if ($('input[data-valid="false"]').length === 0) {
+      if ($(form + ' input[data-valid="false"]').length === 0) {
         $button.removeClass('dim');
         $button.removeAttr('disabled');
       }

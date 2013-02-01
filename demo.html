@@ -7,12 +7,17 @@
     <script src="./js/jquery.dim.js"></script>
   </head>
   <body>
+    <h3> I am part of the form specified!  I don't care about the other inputs on this page</h3>
     <form id="demo" action= "/" method="post">
       <input type="text">
       <input type="text">
       <input type="text">
       <button id="dimmer"> Submit </button>
     </form>
+    <h3> I am not part of the form specified! </h3>
+    <input type="text">
+    <h3> I am not part of the form specified but I have an invalid attribute for fun! </h3>
+    <input type="text" data-valid="false">
     <script>
       $(function() {
         $("#demo").dim({button: "#dimmer"});
